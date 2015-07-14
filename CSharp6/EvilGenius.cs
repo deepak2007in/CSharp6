@@ -44,14 +44,14 @@ namespace CSharp6
                 {
                     var evilJson = new JObject
                     {
-                        [nameof(evil.Name)] = evil.Name                        
+                        [nameof(EvilGenius.Name)] = evil.Name                        
                     };
 
                     if(evil.MyHenchman != null)
                     {
-                        evilJson.Add(nameof(evil.MyHenchman), new JObject
+                        evilJson.Add(nameof(EvilGenius.MyHenchman), new JObject
                         {
-                            [evil.MyHenchman.AngryBird] = evil?.MyHenchman?.AngryBird
+                            [nameof(EvilGenius.Henchman.AngryBird)] = evil?.MyHenchman?.AngryBird
                         });
                     }
 
