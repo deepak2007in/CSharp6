@@ -7,18 +7,9 @@
     {
         static void Main(string[] args)
         {
-            var webErrors = new Dictionary<int, string>
-            {
-                [404] = "Page not found",
-                [302] = "Page moved, but left a forwarding address.",
-                [500] = "The web server can't come out to play today."
-            };
-
-            foreach(var key in webErrors.Keys)
-            {
-                WriteLine(key);
-            }
-
+            var evil = new EvilGenius(name: "Deepak");
+            evil.ReplaceHenchman(new EvilGenius.Henchman { AngryBird = "Top" });
+            evil.ReplaceHenchman(new EvilGenius.Henchman { AngryBird = "Bottom" });
             Read();
         }
     }
