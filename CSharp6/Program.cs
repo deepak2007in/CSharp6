@@ -6,8 +6,22 @@
     {
         static void Main(string[] args)
         {
-            var point = new Point { X = 3, Y = 4 };
-            WriteLine(point.Distance);
+            var vendor = new Vendor
+            {
+                ContactPerson = new Vendor.Person
+                {
+                    HomeAddress = new Vendor.Person.Address
+                    {
+                        Location = "Ahmedabad"
+                    }
+                }
+            };
+
+            var location = vendor?.ContactPerson?.HomeAddress?.Location;
+            WriteLine(location);
+            vendor.ContactPerson = null;
+            location = vendor?.ContactPerson?.HomeAddress?.Location;
+            WriteLine(location);
             Read();
         }
     }
