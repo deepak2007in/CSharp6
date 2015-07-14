@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace CSharp6
@@ -31,6 +33,32 @@ namespace CSharp6
         {
             var oldHenchman = Interlocked.Exchange(ref henchman, newHanchman);
             (oldHenchman as IDisposable)?.Dispose();
+        }
+
+        public static JArray ToJson(IEnumerable<EvilGenius> collection)
+        {
+            var result = new JArray();
+            if(collection != null)
+            {
+                foreach(var evil in collection)
+                {
+                    var evilJson = new JObject
+                    {
+                        ["Name"] = evil.Name                        
+                    };
+
+                    if(evil.MyHenchman != null)
+                    {
+                        evilJson.Add("Henchman", new JObject
+                        {
+                            ["AngryBird"] = evil?.MyHenchman?.AngryBird
+                        });
+                    }
+
+                    result.Add(evilJson);
+                }
+            }
+            return result;
         }
     }
 }

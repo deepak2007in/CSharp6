@@ -7,9 +7,11 @@
     {
         static void Main(string[] args)
         {
-            var evil = new EvilGenius(name: "Deepak");
-            evil.ReplaceHenchman(new EvilGenius.Henchman { AngryBird = "Top" });
-            evil.ReplaceHenchman(new EvilGenius.Henchman { AngryBird = "Bottom" });
+            var evil1 = new EvilGenius(name: "");
+            evil1.ReplaceHenchman(new EvilGenius.Henchman { AngryBird = "Top" });
+
+            var evil2 = new EvilGenius(name: "Agnihotri");
+            WriteLine(EvilGenius.ToJson(new[] { evil1, evil2 }));
             Read();
         }
     }
