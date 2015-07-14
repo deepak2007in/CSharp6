@@ -1,27 +1,24 @@
 ﻿namespace CSharp6
 {
+    using System.Collections.Generic;
     using static System.Console;
 
     class Program
     {
         static void Main(string[] args)
         {
-            var vendor = new Vendor
+            var webErrors = new Dictionary<int, string>
             {
-                ContactPerson = new Vendor.Person
-                {
-                    HomeAddress = new Vendor.Person.Address
-                    {
-                        Location = "Ahmedabad"
-                    }
-                }
+                [404] = "Page not found",
+                [302] = "Page moved, but left a forwarding address.",
+                [500] = "The web server can't come out to play today."
             };
 
-            var location = vendor?.ContactPerson?.HomeAddress?.Location;
-            WriteLine(location);
-            vendor.ContactPerson = null;
-            location = vendor?.ContactPerson?.HomeAddress?.Location;
-            WriteLine(location);
+            foreach(var key in webErrors.Keys)
+            {
+                WriteLine(key);
+            }
+
             Read();
         }
     }
