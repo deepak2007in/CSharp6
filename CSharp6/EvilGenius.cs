@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using static System.String;
 
 namespace CSharp6
 {
@@ -10,6 +11,14 @@ namespace CSharp6
         private Henchman henchman;
         public EvilGenius(string name)
         {
+            if(name == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(name));
+            }
+            if(IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException(paramName: nameof(name), message: "Evil Genius must have a name.");
+            }
             this.Name = name;
         }
 
