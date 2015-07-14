@@ -25,8 +25,8 @@ namespace CSharp6
 
         public class Henchman
         {
-            public string AngryBird { get; set; }
-            public override string ToString() => AngryBird;
+            public string AssistantMoniker { get; set; }
+            public override string ToString() => AssistantMoniker;
         }
 
         public void ReplaceHenchman(Henchman newHanchman)
@@ -51,7 +51,7 @@ namespace CSharp6
                     {
                         evilJson.Add(nameof(EvilGenius.MyHenchman), new JObject
                         {
-                            [nameof(EvilGenius.Henchman.AngryBird)] = evil?.MyHenchman?.AngryBird
+                            [nameof(EvilGenius.Henchman.AssistantMoniker)] = evil?.MyHenchman?.AssistantMoniker
                         });
                     }
 
