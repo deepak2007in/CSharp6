@@ -89,5 +89,13 @@ namespace CSharp6
         }
 
         public override string ToString() => $"{Name}, {MyHenchman?.AssistantMoniker}";
+
+        public string EvilPoints()
+        {
+            double evilBase = 23;
+            double evilExtra = 19;
+
+            return $"{evilBase} / {evilExtra} = {evilBase / evilExtra}";
+        }
     }
 }

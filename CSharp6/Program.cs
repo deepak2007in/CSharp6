@@ -7,6 +7,9 @@
         static void Main(string[] args)
         {
             var evil1 = new EvilGenius(name: "Deepak");
+            WriteLine(evil1.EvilPoints());
+            ReadLine();
+            return;
             evil1.ReplaceHenchman(new EvilGenius.Henchman { AssistantMoniker = "Top" });
             WriteLine(evil1.AssistantHistory());
             evil1.ReplaceHenchman(new EvilGenius.Henchman { AssistantMoniker = "Bottom" });
