@@ -4,8 +4,6 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading;
 using static System.String;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace CSharp6
 {
@@ -28,13 +26,7 @@ namespace CSharp6
 
         public string Name { get; }
 
-        public Henchman MyHenchman
-        {
-            get
-            {
-                return henchman;
-            }
-        }
+        public Henchman MyHenchman => henchman;
 
         public class Henchman
         {
@@ -100,12 +92,9 @@ namespace CSharp6
             return PointsInGerman($"{evilBase} / {evilExtra} = {evilBase / evilExtra}");
         }
 
-        private string PointsInGerman(FormattableString invariantString)
-        {
-            return Format(
+        private string PointsInGerman(FormattableString invariantString) => Format(
                 System.Globalization.CultureInfo.GetCultureInfo("de-de"),
                 invariantString.Format,
                 invariantString.GetArguments());
-        }
     }
 }
