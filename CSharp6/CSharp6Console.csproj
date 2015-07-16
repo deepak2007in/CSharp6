@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountNumberFormat.cs" />
     <Compile Include="EvilGenius.cs" />
     <Compile Include="EvilPlanViewModel.cs" />
     <Compile Include="Point.cs" />

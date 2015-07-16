@@ -2,21 +2,26 @@
 {
     using static System.Console;
 
-    class Program
+    public enum DaysOfWeek { Monday = 1, Tuesday = 2};
+
+    public class Program
     {
         static void Main(string[] args)
         {
-            var evil1 = new EvilGenius(name: "Deepak");
-            WriteLine(evil1.EvilPoints());
-            ReadLine();
-            return;
-            evil1.ReplaceHenchman(new EvilGenius.Henchman { AssistantMoniker = "Top" });
-            WriteLine(evil1.AssistantHistory());
-            evil1.ReplaceHenchman(new EvilGenius.Henchman { AssistantMoniker = "Bottom" });
-            WriteLine(evil1.AssistantHistory());
+            long acctNumber;
+            double balance;
+            DaysOfWeek wday;
+            string output;
 
-            var evil2 = new EvilGenius(name: "Agnihotri");
-            WriteLine(EvilGenius.ToJson(new[] { evil1, evil2 }));
+            acctNumber = 104254568790;
+            balance = 16.35;
+            wday = DaysOfWeek.Monday;
+
+            output = string.Format(new AccountNumberFormat(), "On {2}, the balance of account {0:H} was {1:C2}.", acctNumber, balance, wday);
+            WriteLine(output);
+            wday = DaysOfWeek.Tuesday;
+            output = string.Format(new AccountNumberFormat(), "On {2}, the balance of account {0:I} was {1:C2}.", acctNumber, balance, wday);
+            WriteLine(output);
             Read();
         }
     }
