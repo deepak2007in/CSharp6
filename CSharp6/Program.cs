@@ -1,28 +1,40 @@
 ﻿namespace CSharp6
 {
+    using System;
+    using System.Diagnostics;
     using static System.Console;
-
-    public enum DaysOfWeek { Monday = 1, Tuesday = 2};
-
     public class Program
     {
         static void Main(string[] args)
         {
-            long acctNumber;
-            double balance;
-            DaysOfWeek wday;
-            string output;
+            try
+            {
+                // var nameless = new EvilGenius(default(string));
+                var empty = new EvilGenius("   ");
+            }
+            catch(Exception e) when (LogException(e))
+            {
 
-            acctNumber = 104254568790;
-            balance = 16.35;
-            wday = DaysOfWeek.Monday;
-
-            output = string.Format(new AccountNumberFormat(), "On {2}, the balance of account {0:H} was {1:C2}.", acctNumber, balance, wday);
-            WriteLine(output);
-            wday = DaysOfWeek.Tuesday;
-            output = string.Format(new AccountNumberFormat(), "On {2}, the balance of account {0:I} was {1:C2}.", acctNumber, balance, wday);
-            WriteLine(output);
+            }
+            catch (ArgumentNullException e) when (e.ParamName == "name")
+            {
+                WriteLine("Evil genius must have a name");
+            }
+            catch(ArgumentException e) when (!Debugger.IsAttached)
+            {
+                WriteLine("We finally found this one");
+            }
             Read();
+        }
+
+        private static bool LogException(Exception e)
+        {
+            var oldColor = ForegroundColor;
+            ForegroundColor = ConsoleColor.Red;
+
+            WriteLine("Inside the LogException: Error {0}", e);
+            ForegroundColor = oldColor;
+            return false;
         }
     }
 }
