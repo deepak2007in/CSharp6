@@ -2,6 +2,8 @@
 {
     using System;
     using System.Diagnostics;
+    using System.IO;
+    using System.Threading.Tasks;
     using static System.Console;
     public class Program
     {
@@ -24,10 +26,14 @@
             {
                 WriteLine("We finally found this one");
             }
+            catch (Exception e)
+            {
+                LogErrorToFileAsync("Bad thing happened", e).Wait();    
+            }
             Read();
         }
 
-        private static bool LogException(Exception e)
+        private static bool LogException<T>(T e) where T : Exception
         {
             var oldColor = ForegroundColor;
             ForegroundColor = ConsoleColor.Red;
@@ -35,6 +41,14 @@
             WriteLine("Inside the LogException: Error {0}", e);
             ForegroundColor = oldColor;
             return false;
+        }
+
+        public static async Task LogErrorToFileAsync(string msg, Exception e)
+        {
+            using (var file = File.AppendText("errors.log"))
+            {
+                await file.WriteLineAsync($"{msg}: {e.ToString()}");
+            }
         }
     }
 }
