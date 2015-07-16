@@ -95,7 +95,15 @@ namespace CSharp6
             double evilBase = 23;
             double evilExtra = 19;
 
-            return $"{evilBase} / {evilExtra} = {evilBase / evilExtra}";
+            return PointsInGerman($"{evilBase} / {evilExtra} = {evilBase / evilExtra}");
+        }
+
+        private string PointsInGerman(FormattableString invariantString)
+        {
+            return Format(
+                System.Globalization.CultureInfo.GetCultureInfo("de-de"),
+                invariantString.Format,
+                invariantString.GetArguments());
         }
     }
 }
