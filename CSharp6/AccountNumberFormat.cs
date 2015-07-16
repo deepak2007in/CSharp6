@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharp6
 {
-    class AccountNumberFormat : IFormatProvider, ICustomFormatter
+    internal class AccountNumberFormat : IFormatProvider, ICustomFormatter
     {
         private const int ACCT_LENGTH = 12;
 
@@ -17,7 +13,7 @@ namespace CSharp6
             {
                 try
                 {
-                    return HandleOtherFormats(format: format, argument: arg);
+                    return this.HandleOtherFormats(format: format, argument: arg);
                 }
                 catch(FormatException e)
                 {
