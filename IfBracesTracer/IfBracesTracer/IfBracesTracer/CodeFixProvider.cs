@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
 using Microsoft.CodeAnalysis.Text;
+using Microsoft.CodeAnalysis.Formatting;
 
 namespace IfBracesTracer
 {
@@ -48,7 +49,7 @@ namespace IfBracesTracer
         private async Task<Document> AddBracesAsync(Document document, IfStatementSyntax ifStatement, CancellationToken cancellationToken)
         {
             var nonBlockedStatement = ifStatement.Statement as ExpressionStatementSyntax;
-            var newBlockedStatement = SyntaxFactory.Block(statements: nonBlockedStatement);
+            var newBlockedStatement = SyntaxFactory.Block(statements: nonBlockedStatement).WithAdditionalAnnotations(annotations: Formatter.Annotation);
             var newIfStatement = ifStatement.ReplaceNode(oldNode: nonBlockedStatement, newNode: newBlockedStatement);
             var root = await document.GetSyntaxRootAsync();
             var newRoot = root.ReplaceNode(oldNode: ifStatement, newNode: newIfStatement);
