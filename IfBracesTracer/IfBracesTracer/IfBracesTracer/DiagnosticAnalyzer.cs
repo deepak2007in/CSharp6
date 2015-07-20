@@ -34,13 +34,12 @@ namespace IfBracesTracer
         private static void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
             var ifStatement = (IfStatementSyntax)context.Node;
-            var blockStatement = ifStatement.ChildNodes().Where(node => node.IsKind(SyntaxKind.Block)).FirstOrDefault() as BlockSyntax;
-            if(blockStatement != null)
+            if(ifStatement.Statement.IsKind(SyntaxKind.Block))
             {
                 return;
             }
 
-            var nonBlockStatement = ifStatement.ChildNodes().Where(node => node.IsKind(SyntaxKind.ExpressionStatement)).FirstOrDefault() as ExpressionStatementSyntax;
+            var nonBlockStatement = ifStatement.Statement as ExpressionStatementSyntax;
             if(nonBlockStatement == null)
             {
                 return;
