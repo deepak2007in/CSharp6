@@ -9,6 +9,8 @@
     {
         static void Main(string[] args)
         {
+            if (true)
+                WriteLine("True");
             try
             {
                 // var nameless = new EvilGenius(default(string));
