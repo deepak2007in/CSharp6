@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "SuperFancyPants"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-SuperFancyPants-cc93225d-136e-4f43-8cfe-49838f9f3a75;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}
