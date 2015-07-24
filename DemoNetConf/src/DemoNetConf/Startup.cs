@@ -20,7 +20,7 @@ namespace DemoNetConf
             app.Run(async (context) =>
             {
                 context.Response.ContentType = "text/plain";
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Hello Conf!");
             });
         }
     }
