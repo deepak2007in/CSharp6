@@ -5,7 +5,8 @@
     "": [
       "Microsoft.AspNet.Mvc >= 6.0.0-beta4",
       "Microsoft.AspNet.Server.IIS >= 1.0.0-beta4",
-      "Microsoft.AspNet.Server.WebListener >= 1.0.0-beta4"
+      "Microsoft.AspNet.Server.WebListener >= 1.0.0-beta4",
+      "MyLibrary >= 1.0.0-*"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": []

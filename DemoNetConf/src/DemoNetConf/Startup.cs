@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
+using MyLibrary;
 
 namespace DemoNetConf
 {
@@ -14,6 +15,7 @@ namespace DemoNetConf
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSingleton<IMySiteCultureService, MySiteCultureService>();
         }
 
         public void Configure(IApplicationBuilder app)
