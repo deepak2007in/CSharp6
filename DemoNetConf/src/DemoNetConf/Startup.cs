@@ -20,6 +20,11 @@ namespace DemoNetConf
 
         public void Configure(IApplicationBuilder app)
         {
+            app.Use(async (ctx, next) =>
+            {
+                Console.WriteLine("Hello pipeline, {0}", ctx.Request.Path);
+                await next();
+            });
             app.UseMvc();
             app.Run(async (context) =>
             {
