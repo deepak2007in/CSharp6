@@ -18,6 +18,7 @@ namespace DemoNetConf
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseMvc();
             app.Run(async (context) =>
             {
                 context.Response.ContentType = "text/plain";
