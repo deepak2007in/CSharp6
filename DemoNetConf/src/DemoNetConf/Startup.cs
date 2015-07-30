@@ -6,6 +6,7 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
 using MyLibrary;
+using Microsoft.Framework.ConfigurationModel;
 
 namespace DemoNetConf
 {
@@ -25,6 +26,11 @@ namespace DemoNetConf
                 Console.WriteLine("Hello pipeline, {0}", ctx.Request.Path);
                 await next();
             });
+
+            var configuration = new Configuration();
+            configuration.AddEnvironmentVariables().AddJsonFile("Config.Json");
+            var title = configuration.Get("AppSettings:Title");
+
             app.UseMvc();
             app.Run(async (context) =>
             {
