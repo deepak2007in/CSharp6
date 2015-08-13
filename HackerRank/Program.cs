@@ -19,7 +19,7 @@ class Solution
      */
     static int getNumberOfPrimes(int n) {
         var numberOfPrime = 0;
-        for (var actual = 1; actual < n; actual++) {
+        for (var actual = 2; actual < n; actual++) {
             var isPrime = true;
             for (var devisor = actual - 1; devisor > 1; devisor--) {
                 if (actual % devisor == 0)
