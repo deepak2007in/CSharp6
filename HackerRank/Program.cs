@@ -5,49 +5,49 @@ class Solution
 {
     static void Main(string[] args)
     {
-        var started = DateTimeOffset.Now;
-        var input = 100;
-        Console.WriteLine(getNumberOfPrimes(input));
-        Console.WriteLine((DateTimeOffset.Now - started).TotalMilliseconds);
-        input = 1000000;
-        Console.WriteLine(getNumberOfPrimes(input));
-        Console.WriteLine((DateTimeOffset.Now - started).TotalMilliseconds);
+        var input = new[] { 1, 5, 7, 9, 11 };
+        Console.WriteLine(GetMissingSequence(input));
+
+        input = new[] { 1, 3, 7, 9, 11 };
+        Console.WriteLine(GetMissingSequence(input));
+
+        input = new[] { 1, 3, 5, 9, 11 };
+        Console.WriteLine(GetMissingSequence(input));
+
+        input = new[] { 1, 3, 5, 7, 11 };
+        Console.WriteLine(GetMissingSequence(input));
+
         Console.ReadLine();
     }
 
-    /*
-     * Input 100
-       Output 25
-       Input   1000000
-       Output 78498
-     */
-    static int getNumberOfPrimes(int n) {
-        var primeNumbers = new List<int>(new[] { 2, 3, 5 });
-        if (n > 5)
+    static int GetMissingSequence(int[] sequence)
+    {
+        var minimumDifference = 0;
+        for (int index = sequence.Length - 1; index >= 1; index--)
         {
-            for (var actual = 6; actual < n; actual++)
+            if (minimumDifference == 0)
             {
-                var lastDigit = actual % 10;
-                if (lastDigit % 2 == 0 || lastDigit % 5 == 0)
+                minimumDifference = sequence[index] - sequence[index - 1];
+            }
+            else
+            {
+                if (minimumDifference == sequence[index] - sequence[index - 1])
                 {
                     continue;
                 }
-                var isPrime = true;
-                for (var index = 0; index < primeNumbers.Count; index++)
+                else
                 {
-                    if (actual % primeNumbers[index] == 0)
+                    if(minimumDifference > sequence[index] - sequence[index - 1])
                     {
-                        isPrime = false;
-                        break;
+                        return sequence[index] + Math.Min(minimumDifference, sequence[index] - sequence[index - 1]);
                     }
-                }
-                if (isPrime)
-                {
-                    primeNumbers.Add(actual);
+                    else
+                    {
+                        return sequence[index] - Math.Min(minimumDifference, sequence[index] - sequence[index - 1]);
+                    }
                 }
             }
         }
-
-        return n < 6 ? 3 : primeNumbers.Count;
+        return minimumDifference;
     }
 }
