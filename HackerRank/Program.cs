@@ -1,53 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
 
 class Solution
 {
     static void Main(string[] args)
     {
-        var input = new[] { 1, 5, 7, 9, 11 };
-        Console.WriteLine(GetMissingSequence(input));
-
-        input = new[] { 1, 3, 7, 9, 11 };
-        Console.WriteLine(GetMissingSequence(input));
-
-        input = new[] { 1, 3, 5, 9, 11 };
-        Console.WriteLine(GetMissingSequence(input));
-
-        input = new[] { 1, 3, 5, 7, 11 };
-        Console.WriteLine(GetMissingSequence(input));
-
+        var node = Node.Insert(null, 40);
+        Node.Insert(node, 30);
+        Node.Insert(node, 65);
+        Node.Insert(node.Left, 22);
+        Node.Insert(node.Left, 38);
+        Node.Insert(node.Right, 78);
+        Node.Insert(node.Right.Right, 84);
+        Console.WriteLine(Node.Diameter(node));
         Console.ReadLine();
     }
+}
 
-    static int GetMissingSequence(int[] sequence)
+public class Node
+{
+    public Node Left { get; set; }
+    public Node Right { get; set; }
+    public int Data { get; set; }
+
+    public Node(int newData)
     {
-        var minimumDifference = 0;
-        for (int index = sequence.Length - 1; index >= 1; index--)
+        Left = Right = null;
+        Data = newData;
+    }
+
+    public static Node Insert(Node node, int data)
+    {
+        if (node == null)
         {
-            if (minimumDifference == 0)
+            node = new Node(data);
+        }
+        else
+        {
+            if (data < node.Data)
             {
-                minimumDifference = sequence[index] - sequence[index - 1];
+                node.Left = Insert(node.Left, data);
             }
             else
             {
-                if (minimumDifference == sequence[index] - sequence[index - 1])
-                {
-                    continue;
-                }
-                else
-                {
-                    if(minimumDifference > sequence[index] - sequence[index - 1])
-                    {
-                        return sequence[index] + Math.Min(minimumDifference, sequence[index] - sequence[index - 1]);
-                    }
-                    else
-                    {
-                        return sequence[index] - Math.Min(minimumDifference, sequence[index] - sequence[index - 1]);
-                    }
-                }
+                node.Right = Insert(node.Right, data);
             }
         }
-        return minimumDifference;
+        return node;
+    }
+
+    public static int Diameter(Node node)
+    {
+        var diameter = (node == null) ? 0 : 1;
+        var nodeInSubject = node;
+        while(nodeInSubject.Left != null)
+        {
+            diameter++;
+            nodeInSubject = nodeInSubject.Left;
+        }
+        nodeInSubject = node;
+        while (nodeInSubject.Right != null)
+        {
+            diameter++;
+            nodeInSubject = nodeInSubject.Right;
+        }
+        return diameter;
     }
 }
