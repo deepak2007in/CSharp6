@@ -4,14 +4,34 @@ class Solution
 {
     static void Main(string[] args)
     {
-        int n = Convert.ToInt32(Console.ReadLine());
-        for(int t=0; t<n; t++)
-        {
-            string str = Console.ReadLine();
-            String[] strArr = str.Split();
-            int a = Convert.ToInt32(strArr[0]);
-            int b = Convert.ToInt32(strArr[1]);
-            Console.WriteLine(a + b);
+        var input = 100;
+        Console.WriteLine(getNumberOfPrimes(input));
+        input = 1000000;
+        Console.WriteLine(getNumberOfPrimes(input));
+        Console.ReadLine();
+    }
+
+    /*
+     * Input 100
+       Output 25
+       Input   1000000
+       Output 78498
+     */
+    static int getNumberOfPrimes(int n) {
+        var numberOfPrime = 0;
+        for (var actual = 1; actual < n; actual++) {
+            var isPrime = true;
+            for (var devisor = actual - 1; devisor > 1; devisor--) {
+                if (actual % devisor == 0)
+                {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                numberOfPrime++;
+            }
         }
+        return numberOfPrime;
     }
 }
