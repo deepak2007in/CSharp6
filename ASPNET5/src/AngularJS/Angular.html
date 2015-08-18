@@ -4,18 +4,22 @@
     <meta charset="utf-8" />
     <title>Angular JS</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"> </script>
+    <script src="invoice.js"></script>
 </head>
 <body>
-    <div ng-app ng-init="qty=1;cost=2">
+    <div ng-app="invoice1" ng-controller="InvoiceController as invoice">
         <b>Invoice</b>
         <div>
-            Quantity: <input type="number" min="0" ng-model="qty" />
+            Quantity: <input type="number" min="0" ng-model="invoice.qty" required />
         </div>
         <div>
-            Cost: <input type="number" min="0" ng-model="cost" />
+            Cost: <input type="number" min="0" ng-model="invoice.cost" required />
         </div>
         <div>
-            <b>Total:</b>{{qty * cost | currency}}
+            <b>Total:</b>
+            <span ng-repeat="c in invoice.currencies">
+                {{invoice.total(c) | currency:c}}
+            </span>
         </div>
     </div>
 </body>
