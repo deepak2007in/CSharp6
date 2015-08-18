@@ -4,22 +4,20 @@ class Solution
 {
     static void Main(string[] args)
     {
-        long mem1 = GC.GetTotalMemory(false);
+        for(int i=0; i<100; i++)
         {
-            int[] values = new int[50000];
-            values = null;
+            for(int a=0; a<1000; a++)
+            {
+                System.IO.Path.GetRandomFileName();
+                System.IO.Path.GetRandomFileName();
+            }
+            System.Threading.Thread.Sleep(1);
         }
 
-        long mem2 = GC.GetTotalMemory(false);
+        for(int i=0; i <= GC.MaxGeneration; i++)
         {
-            GC.Collect();
-        }
-
-        long mem3 = GC.GetTotalMemory(false);
-        {
-            Console.WriteLine(mem1);
-            Console.WriteLine(mem2);
-            Console.WriteLine(mem3);
+            int count = GC.CollectionCount(i);
+            Console.WriteLine(count);
         }
         Console.ReadLine();
     }
