@@ -1,5 +1,10 @@
 ﻿var myApp = angular.module('myApp', []);
-myApp.controller('GreetingController', ['$scope', function ($scope) {
-    $scope.greeting = "Hola!";
-    $scope.double = function (value) { return value * 2; };
+myApp.controller('SpicyController', ['$scope', function ($scope) {
+    $scope.spice = "Very";
+    $scope.chiliSpicy = function () {
+        $scope.spice = 'Chili';
+    };
+    $scope.jalapenoSpicy = function () {
+        $scope.spice = 'jalapeno';
+    }
 }]);
