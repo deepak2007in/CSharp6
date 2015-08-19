@@ -5,12 +5,12 @@ myApp.controller('MyController', ['$scope', 'notify', function ($scope, notify) 
     };
 }]);
 myApp.config(['$provide', function ($provide) {
-    $provide.factory('notify', ['$window', function (win) {
+    $provide.factory('notify', ['$log', function ($log) {
         var msgs = [];
         return function (msg) {
             msgs.push(msg);
             if (msgs.length == 3) {
-                win.alert(msgs.join("\n"));
+                $log.log(msgs.join("\n"));
                 msgs = [];
             }
         };
