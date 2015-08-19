@@ -1,12 +1,16 @@
-﻿var myApp = angular.module('scopeInheritance', []);
-myApp.controller('MainController', ['$scope', function ($scope) {
-    $scope.timeOfDay = "morning";
-    $scope.name = "Nikki";
-}]);
-myApp.controller('ChildController', ['$scope', function ($scope) {
-    $scope.name = "Mattie";
-}]);
-myApp.controller('GrandChildController', ['$scope', function ($scope) {
-    $scope.timeOfDay = 'evening';
-    $scope.name = "Gingerbread Baby";
+﻿var myApp = angular.module('myServiceModule', []);
+myApp.controller('MyController', ['$scope', 'notify', function ($scope, notify) {
+    $scope.callNotify = function (msg) {
+        notify(msg);
+    };
+}]).
+factory('notify', ['$window', function (win) {
+    var msgs = [];
+    return function (msg) {
+        msgs.push(msg);
+        if (msgs.length == 3) {
+            win.alert(msgs.join("\n"));
+            msgs = [];
+        }
+    };
 }]);

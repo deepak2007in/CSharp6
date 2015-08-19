@@ -10,15 +10,12 @@
     <script src="greeting.js"></script>
 </head>
 <body>
-    <div class="spicy" ng-app="scopeInheritance">
-        <div ng-controller="MainController">
-            <p>Good {{timeOfDay}}, {{name}}!</p>
-            <div ng-controller="ChildController">
-                <p>Good {{timeOfDay}}, {{name}}!</p>
-                <div ng-controller="GrandChildController">
-                    <p>Good {{timeOfDay}}, {{name}}!</p>
-                </div>
-            </div>
+    <div class="spicy" ng-app="myServiceModule">
+        <div id="simple" ng-controller="MyController">
+            <p>Let's try this simple notify service, injected into the controller</p>
+            <input ng-init="message='test'" ng-model="message" />
+            <button ng-click="callNotify(message);">NOTIFY</button>
+            <p>(You have to click three times to create an alert)</p>
         </div>
     </div>
 </body>
