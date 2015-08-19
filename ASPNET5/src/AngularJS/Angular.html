@@ -3,17 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <title>Angular JS</title>
+    <link href="app.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"> </script>
     <script src="finance.js"></script>
     <script src="invoice.js"></script>
     <script src="greeting.js"></script>
 </head>
 <body>
-    <div ng-app="myApp" ng-controller="SpicyController">
-        <input ng-model="customSpice" />
-        <button ng-click="spicy('Chili')">Chili</button>
-        <button ng-click="spicy('Jalapeno')">Jalapeno</button>
-        <p>The food is {{customSpice}}</p>
+    <div class="spicy" ng-app="scopeInheritance">
+        <div ng-controller="MainController">
+            <p>Good {{timeOfDay}}, {{name}}!</p>
+            <div ng-controller="ChildController">
+                <p>Good {{timeOfDay}}, {{name}}!</p>
+                <div ng-controller="GrandChildController">
+                    <p>Good {{timeOfDay}}, {{name}}!</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
