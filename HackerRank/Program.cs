@@ -8,12 +8,11 @@ class Solution
         var totalNumberOfTestCase = int.Parse(Console.ReadLine());
         for (int i = 0; i < totalNumberOfTestCase; i++)
         {
-            var passingCondition = Console.ReadLine();
-            var passingExpectation = int.Parse(passingCondition.Split(' ')[1]);
-            var inputValues = Console.ReadLine().Split(' ').Select(num => int.Parse(num));
-            var passingActual = inputValues.Where(num => num < 1).Count();
-            var isClassCancelled = (passingActual >= passingExpectation) ? "NO" : "YES";
-            Console.WriteLine(isClassCancelled);
+            var inputSring = Console.ReadLine();
+            var inputDigits = inputSring.ToCharArray().Select(num => int.Parse(num.ToString())).ToList();
+            var input = int.Parse(inputSring);
+            var validDigitCount = inputDigits.Where(digit => digit > 0 && input % digit == 0).Count();
+            Console.WriteLine(validDigitCount);
         }
         Console.ReadLine();
     }
