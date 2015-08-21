@@ -5,7 +5,7 @@ class Solution
 {
     static void Main(string[] args)
     {
-        args = new[] { "4 4 2", "1 2 3 4", "5 6 7 8", "9 10 11 12", "13 14 15 16" };
+        args = new[] { "5 4 1", "1 2 3 4", "7 8 9 10", "13 14 15 16", "19 20 21 22", "25 26 27 28" };
         var firstInput = args[0].Split(' ').Select(num => int.Parse(num.ToString())).ToArray();
         var numberOfRows = firstInput[0];
         var numberOfColumns = firstInput[1];
@@ -20,7 +20,8 @@ class Solution
             }
         }
 
-        var swappedMatrix = matrix.Clone() as int[,];
+        // var swappedMatrix = matrix.Clone() as int[,];
+        var swappedMatrix = new int[numberOfRows, numberOfColumns];
         for (var rotation = 0; rotation < numberOfRotation; rotation++)
         {
             for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
@@ -67,7 +68,14 @@ class Solution
                             }
                             else
                             {
-                                swappedMatrix[rowIndex, columnIndex] = matrix[rowIndex, columnIndex + 1];
+                                if(rowIndex - 1 != 0)
+                                {
+                                    swappedMatrix[rowIndex, columnIndex] = matrix[rowIndex - 1, columnIndex];
+                                }
+                                else
+                                {
+                                    swappedMatrix[rowIndex, columnIndex] = matrix[rowIndex, columnIndex + 1];
+                                }
                             }
                         }
                         else if (columnIndex == numberOfColumns - 1)
