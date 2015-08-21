@@ -5,14 +5,17 @@ class Solution
 {
     static void Main(string[] args)
     {
-        var totalNumberOfTestCase = int.Parse(Console.ReadLine());
-        for (int i = 0; i < totalNumberOfTestCase; i++)
+        var primaryInput = Console.ReadLine();
+        var width = int.Parse(primaryInput.Split(' ')[0]);
+        var testCaseCount = int.Parse(primaryInput.Split(' ')[1]);
+        var widthArray = Console.ReadLine().Split(' ').Select(num => int.Parse(num)).ToArray();
+        for (int i = 0; i < testCaseCount; i++)
         {
-            var inputSring = Console.ReadLine();
-            var inputDigits = inputSring.ToCharArray().Select(num => int.Parse(num.ToString())).ToList();
-            var input = int.Parse(inputSring);
-            var validDigitCount = inputDigits.Where(digit => digit > 0 && input % digit == 0).Count();
-            Console.WriteLine(validDigitCount);
+            var input = Console.ReadLine();
+            var startIndex = int.Parse(input.Split(' ')[0]);
+            var endIndex = int.Parse(input.Split(' ')[1]);
+            var laneArray = widthArray.Skip(startIndex).Take(endIndex - startIndex + 1).ToArray();
+            Console.WriteLine(laneArray.Min());
         }
         Console.ReadLine();
     }
